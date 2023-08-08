@@ -1,0 +1,19 @@
+body { 
+    background-color: lightgray !important;
+    min-height: 100vh;
+}
+.header { 
+    height: 3rem;
+    color: gray;
+    font-size: larger;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.push-card {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
