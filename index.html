@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,21 +8,36 @@
     <script src="script.js"></script>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
     <title>FalkoZimmermann/QuizApp</title>
 </head>
+
 <body onload="firstLoad()">
     <header class="header">
         Welcome to my Quiz App
     </header>
 
     <div class="push-card">
-        <div class="card" style="width: 25rem;">
-            <img class="image" src="img/quiz-2432440_640.png" alt="">
-            <div class="card-body">
-                <h5 class="card-title" id="questiontext">Question</h5>
+
+        <div class="card card-end" id="question-End" style="display: none;"> <!--Der Bereich wird nur angezeigt, wenn das Spiel vorbei ist-->
+            <div><img class="end-image"  src="img/quiz beendet.jpg"></div>
+            <div><p> Sincere greetings</p>
+            <p> You've finished the quiz!!!</p></div>
+            <div id="result-Question"><p><i>You have <b id="right-result">x</b> correct out of <b id="number-question">x</b> questions!!!</i></p></div>
+            <button onclick="nextRound()">Start next round</button>
+        </div>
+
+        <div class="card" style="width: 25rem;" id="question-Body">
+
+            <img class="image" src="img/quiz-2432440_640.png">
+
+            <div class="card-body" > <!--Der Bereich wird immer angezeigt bis das Spiel beendet ist-->
+                <h5 class="card-title" id="question-text">Question</h5>
 
                 <div class="card card-answer mb-2">
                     <div class="card-body" id="answer_1" onclick="answer('answer_1')">
@@ -45,12 +61,13 @@
                 </div>
 
                 <div class="question-footer">
-                    <span><b>1</b> of <b id="number-questions">5</b></span>
-                     <button class="btn btn-success">Next</button>
+                    <span><b id="current-question">1</b> of <b id="number-questions">x</b></span>
+                    <button onclick="nextQuestion()" class="btn btn-success" id="next-button" disabled>Next</button> <!--Der Button ist ausser Funktion und wird in der Funktion wieder aktiviert.-->
                 </div>
 
             </div>
-          </div>
+        </div>
     </div>
 </body>
+
 </html>

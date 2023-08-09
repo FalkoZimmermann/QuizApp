@@ -36,5 +36,17 @@ body {
     background-color: lightgray;
 }
 .bg-success, .bg-danger {
-    color: white;
+    color: white !important;
+}
+.end-image {
+    height: 250px;
+}
+.card-end img {
+    height: 500px !important;
+}
+.card-end p {
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    color: blue;
 }

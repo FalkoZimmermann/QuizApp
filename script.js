@@ -96,36 +96,62 @@ let questions = [
         "right_answer": 2
     },
 ];
-
 let takeQuestion = 0;
+let rightResults = 0;
 
 function firstLoad() {
-    document.getElementById('number-questions').innerHTML = questions.length;
-
+    document.getElementById('number-questions').innerHTML = questions.length;    
     showQuestion();
 }
-
 function showQuestion() {
+    if (takeQuestion >= questions.length) {
+        document.getElementById('question-End').style = '';
+        document.getElementById('question-Body').style = 'display: none';
+        document.getElementById('number-question').innerHTML = questions.length;
+        document.getElementById('right-result').innerHTML = rightResults;
+    } else {
     let question = questions[takeQuestion];
-    document.getElementById('questiontext').innerHTML = question['question'];
+    document.getElementById('current-question').innerHTML = takeQuestion + 1;
+    document.getElementById('question-text').innerHTML = question['question'];
     document.getElementById('answer_1').innerHTML = question['answer_1'];
     document.getElementById('answer_2').innerHTML = question['answer_2'];
     document.getElementById('answer_3').innerHTML = question['answer_3'];
     document.getElementById('answer_4').innerHTML = question['answer_4'];
-}
-
-function answer(selection) {
-    let question = questions[takeQuestion]; 
-    console.log('Selection answer is ', selection); 
-    let selectedQuestionNumber = selection.slice(-1);
-    console.log('selctedQuestionNumber is', selectedQuestionNumber);
-    console.log('Current question is', question['right_answer']);
-
-    if(selectedQuestionNumber == question['right_answer']) {
-        console.log('Right answer');
-        document.getElementById(selection).parentNode.classList.add('bg-success');
-    } else {
-        console.log('wrong answer');
-        document.getElementById(selection).parentNode.classList.add('bg-danger');
     }
+}
+function answer(selection) {
+    let question = questions[takeQuestion];    //console.log('Selection answer is ', selection); 
+    let selectedQuestionNumber = selection.slice(-1);    //console.log('selctedQuestionNumber is', selectedQuestionNumber);    //console.log('Current question is', question['right_answer']);
+    let theRightAnswer = `answer_${question['right_answer']}`; //Richtige Antwort der jeweiligen Frage
+    if (selectedQuestionNumber == question['right_answer']) { //Richtige Frage beantwortet
+        //console.log('Right answer');
+        document.getElementById(selection).parentNode.classList.add('bg-success'); //Richtige Antwort
+        rightResults++;
+    } else {
+        //console.log('wrong answer');
+        document.getElementById(selection).parentNode.classList.add('bg-danger'); //Falsche Antwort
+        document.getElementById(theRightAnswer).parentNode.classList.add('bg-success'); //Die Richtige Antwort bei falscher Antwort anzeigen
+    }
+    document.getElementById('next-button').disabled = false; //Button wird freigegeben
+}
+function nextQuestion() {
+    takeQuestion++; //Erhöht die Frage immer um eins
+    showQuestion();
+    restAnswer();
+    document.getElementById('next-button').disabled = true; //Button wird wieder gesperrt
+    
+}
+function restAnswer() {
+    document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_1').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-success');
+}
+function nextRound() {
+    document.getElementById('question-Body').innerHTML = '';
+    showQuestion();
 }
