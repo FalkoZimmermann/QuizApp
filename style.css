@@ -29,3 +29,12 @@ body {
     margin-top: 10px;
     padding: 10px;
 }
+.card-answer {
+    cursor: pointer;
+}
+.card-answer :hover {
+    background-color: lightgray;
+}
+.bg-success, .bg-danger {
+    color: white;
+}

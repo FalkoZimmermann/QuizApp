@@ -12,7 +12,7 @@
     
     <title>FalkoZimmermann/QuizApp</title>
 </head>
-<body>
+<body onload="firstLoad()">
     <header class="header">
         Welcome to my Quiz App
     </header>
@@ -21,31 +21,31 @@
         <div class="card" style="width: 25rem;">
             <img class="image" src="img/quiz-2432440_640.png" alt="">
             <div class="card-body">
-                <h5 class="card-title">Question</h5>
+                <h5 class="card-title" id="questiontext">Question</h5>
 
-                <div class="card mb-2">
-                    <div class="card-body">
+                <div class="card card-answer mb-2">
+                    <div class="card-body" id="answer_1" onclick="answer('answer_1')">
                         this is the answer.
                     </div>
                 </div>
-                <div class="card mb-2">
-                    <div class="card-body">
+                <div class="card card-answer mb-2">
+                    <div class="card-body" id="answer_2" onclick="answer('answer_2')">
                         this is the answer.
                     </div>
                 </div>
-                <div class="card mb-2">
-                    <div class="card-body">
+                <div class="card card-answer mb-2">
+                    <div class="card-body" id="answer_3" onclick="answer('answer_3')">
                         this is the answer.
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-body">
+                <div class="card card-answer">
+                    <div class="card-body" id="answer_4" onclick="answer('answer_4')">
                         this is the answer.
                     </div>
                 </div>
 
                 <div class="question-footer">
-                    <span><b>1</b> of <b>5</b></span>
+                    <span><b>1</b> of <b id="number-questions">5</b></span>
                      <button class="btn btn-success">Next</button>
                 </div>
 
