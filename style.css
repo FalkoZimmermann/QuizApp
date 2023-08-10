@@ -42,11 +42,18 @@ body {
     height: 250px;
 }
 .card-end img {
-    height: 500px !important;
+    height: 600px !important;
 }
 .card-end p {
     font-size: x-large;
     display: flex;
     justify-content: center;
     color: blue;
+}
+.result-question {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+    font-size: larger;
+    color: darkgreen;
 }
