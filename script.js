@@ -1,6 +1,6 @@
 let questions = [
     {
-        "question": "Wie viele Tage hat der Dezmber?",
+        "question": "Wie viele Tage hat der Dezember?",
         "answer_1": "31 Tage",
         "answer_2": "42 Tage",
         "answer_3": "30 Tage",
@@ -100,23 +100,29 @@ let takeQuestion = 0;
 let rightResults = 0;
 
 function firstLoad() {
-    document.getElementById('number-questions').innerHTML = questions.length;    
+    document.getElementById('number-questions').innerHTML = questions.length;
     showQuestion();
 }
 function showQuestion() {
-    if (takeQuestion >= questions.length) {
+    if (takeQuestion >= questions.length) { //Endscreen
         document.getElementById('question-End').style = '';
         document.getElementById('question-Body').style = 'display: none';
         document.getElementById('number-question').innerHTML = questions.length;
         document.getElementById('right-result').innerHTML = rightResults;
     } else {
-    let question = questions[takeQuestion];
-    document.getElementById('current-question').innerHTML = takeQuestion + 1;
-    document.getElementById('question-text').innerHTML = question['question'];
-    document.getElementById('answer_1').innerHTML = question['answer_1'];
-    document.getElementById('answer_2').innerHTML = question['answer_2'];
-    document.getElementById('answer_3').innerHTML = question['answer_3'];
-    document.getElementById('answer_4').innerHTML = question['answer_4'];
+
+        let percent = takeQuestion / questions.length * 100;
+        percent = Math.round(percent);
+        console.log('Fortschritt:' , percent)
+        document.getElementById('progress-bar').innerHTML = `${percent} %`;
+        document.getElementById('progress-bar').style = `width: ${percent}%;`;
+        let question = questions[takeQuestion]; // Next question
+        document.getElementById('current-question').innerHTML = takeQuestion + 1;
+        document.getElementById('question-text').innerHTML = question['question'];
+        document.getElementById('answer_1').innerHTML = question['answer_1'];
+        document.getElementById('answer_2').innerHTML = question['answer_2'];
+        document.getElementById('answer_3').innerHTML = question['answer_3'];
+        document.getElementById('answer_4').innerHTML = question['answer_4'];
     }
 }
 function answer(selection) {
@@ -139,7 +145,7 @@ function nextQuestion() {
     showQuestion();
     restAnswer();
     document.getElementById('next-button').disabled = true; //Button wird wieder gesperrt
-    
+
 }
 function restAnswer() {
     document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
@@ -152,6 +158,10 @@ function restAnswer() {
     document.getElementById('answer_4').parentNode.classList.remove('bg-success');
 }
 function nextRound() {
-    document.getElementById('question-Body').innerHTML = '';
-    showQuestion();
+    takeQuestion = 0;
+    rightResults = 0;
+    firstLoad();
+    
+    document.getElementById('question-End').style = 'display: none';
+    document.getElementById('question-Body').style = '';
 }

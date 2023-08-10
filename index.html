@@ -26,15 +26,24 @@
 
         <div class="card card-end" id="question-End" style="display: none;"> <!--Der Bereich wird nur angezeigt, wenn das Spiel vorbei ist-->
             <div><img class="end-image"  src="img/quiz beendet.jpg"></div>
-            <div><p> Sincere greetings</p>
-            <p> You've finished the quiz!!!</p></div>
-            <div class="result-question" id="result-Question"><i>You have <b id="right-result">x</b> correct out of <b id="number-question">x</b> questions!!!</i></div>
-            <button onclick="nextRound()">Start next round</button>
+            <div class="progress">
+                <div class="progress-bar text-bg-warning"  style="width: 100%">100%</div>
+              </div>
+            <div><p> Herzlichen Glückwunsch</p>
+            <p> Du hast das Quiz beender!!!</p></div>
+            <div class="result-question" id="result-Question"><i>Du hast <b id="right-result">x</b> von <b id="number-question">x</b> Fragen richtig!!!</i></div>
+            <div class="btn-end">
+            <button onclick="nextRound()"class="btn-next-round">Start next round</button>
+            </div>
         </div>
 
-        <div class="card" style="width: 25rem;" id="question-Body">
+        <div class="card" style="max-width: 25rem;" id="question-Body">
 
             <img class="image" src="img/quiz-2432440_640.png">
+
+            <div class="progress" role="progressbar" aria-label="Warning example" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar text-bg-warning" id="progress-bar" style="width: 0%">0%</div>
+              </div>
 
             <div class="card-body" > <!--Der Bereich wird immer angezeigt bis das Spiel beendet ist-->
                 <h5 class="card-title" id="question-text">Question</h5>

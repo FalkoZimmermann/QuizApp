@@ -48,12 +48,26 @@ body {
     font-size: x-large;
     display: flex;
     justify-content: center;
-    color: blue;
+    color: rgb(187, 9, 223);
 }
 .result-question {
     display: flex;
     justify-content: center;
     margin-bottom: 18px;
     font-size: larger;
-    color: darkgreen;
+    color: rgb(219, 145, 8);
+}
+.btn-end {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-next-round {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: green;
+    color: white;
+    border-radius: 25px
 }
