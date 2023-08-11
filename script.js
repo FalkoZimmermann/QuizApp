@@ -100,6 +100,7 @@ let takeQuestion = 0;
 let rightResults = 0;
 let AUDIO_SUCCESS = new Audio('audio/right.mp3');
 let ADIO_FAIL = new Audio('audio/wrong.mp3');
+let answerClicked = false;
 
 function firstLoad() {
     document.getElementById('number-questions').innerHTML = questions.length;
@@ -143,6 +144,12 @@ function answer(selection) {
     let question = questions[takeQuestion];    //console.log('Selection answer is ', selection); 
     let selectedQuestionNumber = selection.slice(-1);    //console.log('selctedQuestionNumber is', selectedQuestionNumber);    //console.log('Current question is', question['right_answer']);
     let theRightAnswer = `answer_${question['right_answer']}`; //Richtige Antwort der jeweiligen Frage
+    
+    if (answerClicked) {
+        return;
+    }
+    answerClicked = true; // Die Antworten sind bis zu diesem Befehl hin gesperrt.
+
     if (selectedQuestionNumber == question['right_answer']) { //Richtige Frage beantwortet
         //console.log('Right answer');
         document.getElementById(selection).parentNode.classList.add('bg-success'); //Richtige Antwort
@@ -158,6 +165,7 @@ function answer(selection) {
     document.getElementById('next-button').disabled = false; //Button wird freigegeben
 }
 function nextQuestion() {
+    answerClicked = false;
     takeQuestion++; //Erhöht die Frage immer um eins
     showQuestion();
     restAnswer();
