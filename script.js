@@ -105,6 +105,11 @@ function firstLoad() {
     document.getElementById('number-questions').innerHTML = questions.length;
     showQuestion();
 }
+function startGame() {
+        document.getElementById('question-Body').style = 'width: 23rem;';
+        document.getElementById('welcome-card').style = 'display: none;';
+
+}
 function showQuestion() {
     if (gameIsOver()) { //Endscreen
         endScreen();
