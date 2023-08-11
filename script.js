@@ -148,6 +148,7 @@ function answer(selection) {
         document.getElementById(selection).parentNode.classList.add('bg-success'); //Richtige Antwort
         AUDIO_SUCCESS.play();
         rightResults++;
+        
     } else {
         //console.log('wrong answer');
         document.getElementById(selection).parentNode.classList.add('bg-danger'); //Falsche Antwort
