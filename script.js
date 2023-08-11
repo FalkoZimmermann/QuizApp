@@ -17,9 +17,9 @@ let questions = [
     },
     {
         "question": "Wie nennt man einen männlichen Hund?",
-        "answer_1": "Rudolf",
+        "answer_1": "Hengst",
         "answer_2": "Eber",
-        "answer_3": "Kids",
+        "answer_3": "Erpel",
         "answer_4": "Rüde",
         "right_answer": 4
     },
@@ -49,19 +49,19 @@ let questions = [
     },
     {
         "question": "Welches ist das höchste Bauwerk in Deutschland?",
-        "answer_1": "Kölner Doom",
+        "answer_1": "Kölner Dom",
         "answer_2": "Comerzbank Tower in Frankfurth",
         "answer_3": "Marinefunksendestelle Rhauderfehn",
         "answer_4": "Berliner Fernsehturm",
         "right_answer": 4
     },
     {
-        "question": "Wie hieß der Hund in der Serie Lassie?",
-        "answer_1": "Pluto",
-        "answer_2": "Balu",
-        "answer_3": "Lassie",
-        "answer_4": "Nemo",
-        "right_answer": 3
+        "question": "Wie heißt die zweite Maus von Bernhard und ....?",
+        "answer_1": "Bärbel",
+        "answer_2": "Bianca",
+        "answer_3": "Brikitte",
+        "answer_4": "Birgit",
+        "right_answer": 2
     },
     {
         "question": "Wann war die Schlacht bei Issos?",
@@ -98,22 +98,26 @@ let questions = [
 ];
 let takeQuestion = 0;
 let rightResults = 0;
+let AUDIO_SUCCESS = new Audio('audio/right.mp3');
+let ADIO_FAIL = new Audio('audio/wrong.mp3');
 
 function firstLoad() {
     document.getElementById('number-questions').innerHTML = questions.length;
     showQuestion();
 }
 function showQuestion() {
-    if (takeQuestion >= questions.length) { //Endscreen
-        document.getElementById('question-End').style = '';
-        document.getElementById('question-Body').style = 'display: none';
-        document.getElementById('number-question').innerHTML = questions.length;
-        document.getElementById('right-result').innerHTML = rightResults;
+    if (gameIsOver()) { //Endscreen
+        endScreen();
     } else {
-
-        let percent = takeQuestion / questions.length * 100;
-        percent = Math.round(percent);
-        console.log('Fortschritt:' , percent)
+        takenextQuestion();
+    }
+}
+function gameIsOver() {
+    return takeQuestion >= questions.length;
+}
+function takenextQuestion() {
+    let percent = takeQuestion / questions.length * 100;
+        percent = Math.round(percent);        // console.log('Fortschritt:' , percent) 
         document.getElementById('progress-bar').innerHTML = `${percent} %`;
         document.getElementById('progress-bar').style = `width: ${percent}%;`;
         let question = questions[takeQuestion]; // Next question
@@ -123,7 +127,12 @@ function showQuestion() {
         document.getElementById('answer_2').innerHTML = question['answer_2'];
         document.getElementById('answer_3').innerHTML = question['answer_3'];
         document.getElementById('answer_4').innerHTML = question['answer_4'];
-    }
+}
+function endScreen() {
+    document.getElementById('question-End').style = '';
+        document.getElementById('question-Body').style = 'display: none';
+        document.getElementById('number-question').innerHTML = questions.length;
+        document.getElementById('right-result').innerHTML = rightResults;
 }
 function answer(selection) {
     let question = questions[takeQuestion];    //console.log('Selection answer is ', selection); 
@@ -132,11 +141,13 @@ function answer(selection) {
     if (selectedQuestionNumber == question['right_answer']) { //Richtige Frage beantwortet
         //console.log('Right answer');
         document.getElementById(selection).parentNode.classList.add('bg-success'); //Richtige Antwort
+        AUDIO_SUCCESS.play();
         rightResults++;
     } else {
         //console.log('wrong answer');
         document.getElementById(selection).parentNode.classList.add('bg-danger'); //Falsche Antwort
         document.getElementById(theRightAnswer).parentNode.classList.add('bg-success'); //Die Richtige Antwort bei falscher Antwort anzeigen
+        ADIO_FAIL.play();
     }
     document.getElementById('next-button').disabled = false; //Button wird freigegeben
 }
@@ -163,5 +174,5 @@ function nextRound() {
     firstLoad();
     
     document.getElementById('question-End').style = 'display: none';
-    document.getElementById('question-Body').style = '';
+    document.getElementById('question-Body').style = 'max-width: 25rem';
 }
